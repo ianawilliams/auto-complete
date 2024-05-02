@@ -1,1 +1,1 @@
-# auto-complete
+# Auto Complete Component
