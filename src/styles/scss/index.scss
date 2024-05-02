@@ -1,0 +1,25 @@
+@import './_variables.scss';
+
+button {
+    &.btn--icon {
+        background: none;
+        border: none;
+
+        &:hover {
+            color: $primary;
+        }
+    }
+
+    &.btn--unstyled {
+        background: none;
+        border: none;
+    }
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.text-center {
+    text-align: center;
+}
