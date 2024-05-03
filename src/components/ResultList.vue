@@ -65,11 +65,11 @@ export default {
   display: inline-block;
   position: relative;
   width: 80px;
-  height: 80px;
+  height: 13.33333px;
 }
 .lds-ellipsis div {
   position: absolute;
-  top: 33.33333px;
+  // top: 33.33333px;
   width: 13.33333px;
   height: 13.33333px;
   border-radius: 50%;

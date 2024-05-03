@@ -46,15 +46,19 @@
 
         <p style="font-size: 13px;">This filter function is called from the parent of the auto complete component. It
             Allows the developer to make a custom API call. This example just has a 1.5s delay on 
-            removing the loading animation.
+            removing the loading animation. Debounce is called in Parent component on fake API call.
         </p>
       </div>
     </main>
+    <footer>
+      <a href="https://github.com/ianawilliams/auto-complete" target="_blank">Link to Git Hub Repo</a>
+    </footer>
   </div>
 </template>
 
 <script>
 import AutoCompleteVue from '@/components/AutoComplete.vue'
+import debounce from 'lodash/debounce';
 
 export default {
   name: 'App',
@@ -86,18 +90,25 @@ export default {
     }
   },
   methods: {
-    async apiMock(searchTerm) {
-      this.apiResults = this.list.filter((item) => {
-        return item.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase());
-      })
-    },
+    apiCall: debounce(async function(val) {
+      this.apiResults = await new Promise((resolve) => {
+        setTimeout(() => {
+          resolve(
+            this.list.filter((item) => {
+              return item.toLocaleLowerCase().includes(val.toLocaleLowerCase())
+            })
+          )
+        }, 1500)
+      });
+      this.loading = false;
+    }, 300),
+
     async loadResults(val) {
       if (val) {
         this.loading = true;
-        await this.apiMock(val);
-        setTimeout(() => {
-          this.loading = false;
-        }, "1500");
+        this.apiCall(val);
+      } else {
+        this.apiResults = [];
       }
     }
   }
@@ -107,6 +118,11 @@ export default {
 <style lang="scss">
 @import 'https://fonts.googleapis.com/icon?family=Material+Icons';
 @import '@/styles/scss/index.scss';
+body,
+html,
+#app {
+  height: 100vh
+}
 
 body {
   margin: 0;
@@ -114,13 +130,25 @@ body {
 }
 
 #app {
+  display: flex;
+  flex-direction: column;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
+
+  a {
+    text-decoration: none;
+    color: #FFF;
+
+    span {
+      display: flex;
+    }
+  }
 }
 
 main {
+  flex-grow: 1;
   width: 100%;
   box-sizing: border-box;
   padding: 20px;
@@ -150,13 +178,7 @@ main {
   border-bottom: 2px solid $dark;
 
   .home-link {
-    text-decoration: none;
-    color: #FFF;
     margin-right: 20px;
-
-    span {
-      display: flex;
-    }
   }
 
   h1 {
@@ -164,5 +186,13 @@ main {
     font-size: 24px;
     margin: 0;
   }
+}
+
+footer {
+  height: 100px;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  background: $primary;
 }
 </style>

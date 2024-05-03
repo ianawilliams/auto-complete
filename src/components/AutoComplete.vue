@@ -10,6 +10,7 @@
     >
         <SearchBar
           v-model="value" 
+          :clearable="clearable"
           :place-holder="placeHolder"
           :dropdownActive="showDropdown"
           @focus="searchActive = true" 
@@ -25,6 +26,7 @@
 <script>
 import SearchBar from '@/components/SearchBar.vue'
 import ResultsList from '@/components/ResultList.vue'
+import debounce from 'lodash/debounce';
 
 export default {
   name: 'AutoComplete',
@@ -36,6 +38,10 @@ export default {
     placeHolder: {
       default: 'Search...',
       type: String
+    },
+    clearable: {
+      default: true,
+      type: Boolean
     },
     maxHeight: {
       type: String
@@ -112,7 +118,7 @@ export default {
       if (this.disableFilter) {
         return this.loading;
       } else {
-        return false;
+        return this.filtering;
       }
     }
   },
@@ -156,17 +162,20 @@ export default {
       } else {
         return [];
       }
-    }
+    },
 
+    searchEvent: debounce(async function(val) {
+      this.results = await this.getResults(val, this.options);
+      this.filtering = false;
+    }, 0)
   },
   watch: {
-    value: async function(newVal, oldVal){
-      if (this.disableFilter) {
-        this.$emit("search-term", newVal);
-      } else {
+    value: function(newVal) {
+      if (!this.disableFilter) {
         this.filtering = true;
-        this.results = await this.getResults(newVal, this.options);
-        this.filtering = false;
+        this.searchEvent(newVal);
+      } else {
+        this.$emit("search-term", newVal);
       }
     }
   }
