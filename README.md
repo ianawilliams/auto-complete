@@ -1,5 +1,7 @@
 # Auto Complete Component
 
+Demo of a Vue component for auto complete search
+
 | Props      | Type | Default | Description | 
 | ----------- | ----------- | ----------- | ----------- |
 | clearable | Boolean | true | if set to true a clear button will show in right side of search bar when text has been entered |
