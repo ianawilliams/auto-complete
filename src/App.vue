@@ -167,6 +167,7 @@ main {
 
 .header {
   position: sticky;
+  z-index: 100;
   padding: 10px;
   box-sizing: border-box;
   top: 0;
@@ -192,7 +193,7 @@ footer {
   height: 100px;
   display: flex;
   align-items: center;
-  padding: 0 20px;
+  padding: 20px;
   background: $primary;
 }
 </style>

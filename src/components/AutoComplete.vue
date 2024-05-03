@@ -192,6 +192,7 @@ export default {
       position: absolute;
       width: 100%;
       z-index: 2;
+      box-sizing: border-box;
     }
   }
 
