@@ -1,6 +1,6 @@
 # Auto Complete Component
 
-Demo of a Vue component for auto complete search
+Demo of a Vue component for auto complete search. Styles built with SCSS.
 
 | Props      | Type | Default | Description | 
 | ----------- | ----------- | ----------- | ----------- |
