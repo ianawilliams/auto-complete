@@ -1,6 +1,8 @@
 # Auto Complete Component
 
-Demo of a Vue component for auto complete search. Styles built with SCSS. [link to demo](https://ianawilliams.github.io/auto-complete/)
+Demo of a Vue component for auto complete search. Styles built with SCSS. Loading animation found online.
+
+[link to demo](https://ianawilliams.github.io/auto-complete/)
 
 | Props      | Type | Default | Description | 
 | ----------- | ----------- | ----------- | ----------- |
