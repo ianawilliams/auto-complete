@@ -11,3 +11,5 @@
 | suggest-all | Boolean | false | If true, all options will show when search bar is empty |
 | disable-filter | Boolean | false | Disables filtering from a set list. Used when filtering will be done by an API call from parent |
 | over-ride-results | String Array | [] |  Resuls from API will be put here |
+
+Debounce implemented with Lodash
