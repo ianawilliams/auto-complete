@@ -1,5 +1,7 @@
 # Auto Complete Component
 
+Demo of a Vue component for auto complete search. Styles built with SCSS. [link to demo](https://ianawilliams.github.io/auto-complete/)
+
 | Props      | Type | Default | Description | 
 | ----------- | ----------- | ----------- | ----------- |
 | clearable | Boolean | true | if set to true a clear button will show in right side of search bar when text has been entered |
@@ -11,3 +13,5 @@
 | suggest-all | Boolean | false | If true, all options will show when search bar is empty |
 | disable-filter | Boolean | false | Disables filtering from a set list. Used when filtering will be done by an API call from parent |
 | over-ride-results | String Array | [] |  Resuls from API will be put here |
+
+Debounce implemented with Lodash
